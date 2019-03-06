@@ -97,7 +97,7 @@ new cronJob('0 */15 * * * *', function() {
   console.log('You will see this message every second');
 }, null, true, 'America/Los_Angeles');
 
-twitterClient.stream('statuses/filter', { track: '@UNCLE_AJALA, @save_video' }, function(stream) {
+twitterClient.stream('statuses/filter', { track: '@save_video' }, function(stream) {
   
   stream.on('data', function(event) {
    handleStream(event)
