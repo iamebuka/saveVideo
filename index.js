@@ -42,12 +42,6 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 
 app.use('/', indexRouter);
-app.use(function(req, res, next) {
-  if (!req.session) {
-    return next(new Error('oh no connection lost')); // handle error
-  }
-  next();
-});
 
 function handleStream(event){
   
