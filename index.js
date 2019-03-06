@@ -1,10 +1,10 @@
 const express = require('express');
 const session = require('express-session');
-const redisStore = require('connect-redis')(session);
+
 const twitter = require('twitter');
 const redis = require('redis');
 const mongoose = require('mongoose');
-const redisClient = redis.createClient();
+
 const indexRouter = require('./router/index');
 const helper = require('./helper/index')
 const cronJob = require('cron').CronJob
