@@ -27,7 +27,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use('/', indexRouter);
 
-/* function handleStream(event){
+function handleStream(event){
   
   //only return value for replies to tweet where original tweet isnt bot that includes save as tweet 
   let tweet = event.text;
@@ -78,7 +78,7 @@ function replyTweet(screen_name, link, tweetID, callback){
     
   })
 }
- */
+ 
 
 //start cronJob to reset counter value every 15Minutes
 new cronJob('0 */15 * * * *', function() {
@@ -89,7 +89,7 @@ new cronJob('0 */15 * * * *', function() {
 new cronJob('0 */15 * * * *', function() {
   console.log('You will see this message every second');
 }, null, true, 'America/Los_Angeles');
-/* 
+
 twitterClient.stream('statuses/filter', { track: '@save_video' }, function(stream) {
   
   stream.on('data', function(event) {
@@ -100,6 +100,8 @@ twitterClient.stream('statuses/filter', { track: '@save_video' }, function(strea
     throw error;
   });
 });
- */
-
+ 
+app.get('*', function(req, res){
+  res.render('error', {message: 'we are trying to resolve this'})
+})
 app.listen(process.env.PORT || 3000);
