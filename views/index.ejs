@@ -28,16 +28,21 @@
   </div>
   <div class="colums"> 
   <div class="column is-half is-offset-one-quarter">
+  <form method="POST" action="/downloads">
   <div class="field has-addons">
-  <div class="control">
-    <input class="input" type="text" placeholder="Enter Twitter screen name">
+  <div class="control is-expanded">
+  
+  <input id="screen_name" class="input" type="text" name="screen_name" placeholder="Enter Twitter screen name">
+  
   </div>
   <div class="control">
-    <a class="button is-info">
+    <button type="submit" class="button is-info">
       Search
-    </a>
+    </button>
   </div>
 </div>
+
+</form>
   </div>
   
   </div>
@@ -56,7 +61,7 @@
  <br/>
  <div class="colums">
  <div class="column is-half is-offset-one-quarter">
- <p class="title is-size-4-desktop">## What long do i have to wait ?</p>
+ <p class="title is-size-4-desktop">## How long do i have to wait ?</p>
  <p>
  You get your link almost immediately but sometimes at most in 10 minutes, just mention me in a post, count to ten then ding! dong!!
  </p>
