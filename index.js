@@ -35,7 +35,7 @@ function handleStream(event){
   let parentTweet = event.in_reply_to_status_id_str;
   let parentTweetOwner = event.in_reply_to_screen_name
  
-  if ( parentTweet &&  parentTweetOwner !== 'save_video' && tweet.includes('save')) {
+  if ( parentTweet &&  parentTweetOwner !== 'save_video') {
 
     //retrieve tweet id && return tweet parent
     twitterClient.get('statuses/show', { id: parentTweet }, function(err, tweet) {
