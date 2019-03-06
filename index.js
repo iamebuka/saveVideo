@@ -21,7 +21,7 @@ const twitterClient = new twitter({
   access_token_secret: process.env.access_token_secret
 });
 
-app.use(
+/* app.use(
   session({
     secret: 'keyboard cat',
     resave: false,
@@ -37,7 +37,7 @@ app.use(
       httpOnly: true
     }
   })
-);
+); */
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
@@ -92,8 +92,7 @@ function handleStream(event){
       
       })
       
-      })
-      
+      })   
       } //else //console.log('doesnt contain a video');
       });
   }
