@@ -22,7 +22,7 @@ router
           res.render("error", { message: "page doesnt exist" });
         } else {
           dbdata
-            .find({ user_id: ObjectId(user._id) })
+            .find({ user_id: ObjectId(user._id) }).sort({ 'generated_date': -1 })
             .then(results => {
               res.render("download", { screen_name, results });
             })
