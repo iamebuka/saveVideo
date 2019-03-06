@@ -1,16 +1,10 @@
 const user = require('../model/user');
 const data = require('../model/data');
 
-function isPreviouslyDownloaded(screen_name, tweetId) {
- data.findOne({ $and: [{ screen_name }, { tweetId }] });
-   
-  }
-
 
 function createUserIfNotExist(screen_name){
     return new Promise((resolve, reject) => {
     user.findOne({screen_name}).lean().exec().then(users => {
-        console.log(users)
         if(users) resolve(users);
         if(users == null){
             let u = new user({
@@ -23,6 +17,8 @@ function createUserIfNotExist(screen_name){
   })}
 
 function messageTemplate(screen_name, link){
-    return `ding! dong!! @${screen_name} visit ${link} to download `
+    return `ding! dong!! Hi @${screen_name} click ${link} to download.
+   you can also visit http://www.savetwittervideo.me/${screen_name} to download recent videos
+    `
   }
-module.exports = {createUserIfNotExist, isPreviouslyDownloaded, messageTemplate}
+module.exports = {createUserIfNotExist, messageTemplate}
