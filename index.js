@@ -21,23 +21,6 @@ const twitterClient = new twitter({
   access_token_secret: process.env.access_token_secret
 });
 
-/* app.use(
-  session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      secure: true,
-      store: new redisStore({
-        host: 'localhost',
-        port: 6379,
-        client: redisClient
-      }),
-      maxAge: 60 * 60 * 24 * 2,
-      httpOnly: true
-    }
-  })
-); */
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
