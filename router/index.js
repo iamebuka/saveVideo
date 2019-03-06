@@ -9,7 +9,7 @@ router
   })
 
   .get("/downloads/:user", function(req, res) {
-    let screen_name = req.params.user;
+    let screen_name = req.params.user.toLowerCase();
     dbuser
       .findOne({ screen_name })
       .lean()
