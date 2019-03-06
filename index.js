@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-
+const bodyParser = require('body-parser');
 const twitter = require('twitter');
 const redis = require('redis');
 const mongoose = require('mongoose');
@@ -23,10 +23,11 @@ const twitterClient = new twitter({
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
-
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
 app.use('/', indexRouter);
 
-function handleStream(event){
+/* function handleStream(event){
   
   //only return value for replies to tweet where original tweet isnt bot that includes save as tweet 
   let tweet = event.text;
@@ -41,23 +42,17 @@ function handleStream(event){
     twitterClient.get('statuses/show', { id: parentTweet }, function(err, tweet) {
         if (err) throw new Error(err);
         if (tweet.extended_entities) {
-          console.log('contains video')
-          console.log('screen_name', event.user.screen_name)
           //if tweet contains media
           let media = tweet.extended_entities.media
             .filter(media => media.type == 'video')
             .map(media => media.video_info.variants)
             .reduce((accum, current) => accum.concat(current), []);
-          if (!media) {
-           // console.log('only contains images');
-            return;
-          } //reply user with no video to download or do nothing
+
+          if (!media) {return;} 
 
       helper.createUserIfNotExist(tweetOwner).then(function(user){
-        console.log('user returned',user)
-
+        
         data.create({
-          
           media,
           original_tweetUrl: '',
           original_tweetID: tweet.id_str,
@@ -68,9 +63,7 @@ function handleStream(event){
           console.log('meow')
       
       })
-      
-      })   
-      } //else //console.log('doesnt contain a video');
+      })} //console.log('doesnt contain a video');
       });
   }
 }
@@ -85,7 +78,7 @@ function replyTweet(screen_name, link, tweetID, callback){
     
   })
 }
-
+ */
 
 //start cronJob to reset counter value every 15Minutes
 new cronJob('0 */15 * * * *', function() {
@@ -96,7 +89,7 @@ new cronJob('0 */15 * * * *', function() {
 new cronJob('0 */15 * * * *', function() {
   console.log('You will see this message every second');
 }, null, true, 'America/Los_Angeles');
-
+/* 
 twitterClient.stream('statuses/filter', { track: '@save_video' }, function(stream) {
   
   stream.on('data', function(event) {
@@ -107,6 +100,6 @@ twitterClient.stream('statuses/filter', { track: '@save_video' }, function(strea
     throw error;
   });
 });
-
+ */
 
 app.listen(process.env.PORT || 3000);
