@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const twitter = require('twitter');
 const redis = require('redis');
 const mongoose = require('mongoose');
-
+const https = require('https')
 const indexRouter = require('./router/index');
 const helper = require('./helper/index')
 const cronJob = require('cron').CronJob
@@ -59,6 +59,7 @@ function handleStream(event){
           generated_date: new Date(),
           user_id: user._id
         }, function(err){
+          
           replyTweet(tweetOwner, media[0].url, tweetID)
           console.log('meow')
       
@@ -93,14 +94,16 @@ new cronJob('0 */15 * * * *', function() {
 twitterClient.stream('statuses/filter', { track: '@save_video' }, function(stream) {
   
   stream.on('data', function(event) {
-   handleStream(event)
+   //handleStream(event)
   });
 
   stream.on('error', function(error) {
     throw error;
   });
 });
- 
+setInterval(function(){
+  https.get('https://savevideo.herokuapp.com/')
+}, 300000) 
 app.get('*', function(req, res){
   res.render('error', {message: 'we are trying to resolve this'})
 })
