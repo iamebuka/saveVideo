@@ -76,7 +76,7 @@ function replyTweet(screen_name, link, tweetID, callback){
   console.log('status', status, tweetID)
   twitterClient.post('statuses/update',{status, in_reply_to_status_id: tweetID }, function(err, tweet){
     if(err) throw err;
-    
+    console.log("tweet",tweet)
   })
 }
  
@@ -86,25 +86,22 @@ new cronJob('0 */15 * * * *', function() {
   console.log('You will see this message every second');
 }, null, true, 'America/Los_Angeles');
 
-//start cronJob to reset value every 15Minutes
-new cronJob('0 */15 * * * *', function() {
-  console.log('You will see this message every second');
-}, null, true, 'America/Los_Angeles');
-
 twitterClient.stream('statuses/filter', { track: '@save_video' }, function(stream) {
   
   stream.on('data', function(event) {
-   //handleStream(event)
+   handleStream(event)
   });
 
   stream.on('error', function(error) {
     throw error;
   });
 });
+
 setInterval(function(){
   https.get('https://savevideo.herokuapp.com/')
 }, 300000) 
+
 app.get('*', function(req, res){
   res.render('error', {message: 'we are trying to resolve this'})
 })
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3001);
