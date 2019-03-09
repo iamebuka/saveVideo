@@ -47,8 +47,8 @@ function handleStream(event){
           let media = tweet.extended_entities.media
             .filter(media => media.type == 'video')
             .map(media => media.video_info.variants)
-            .map(media => media.content_type == 'video/mp4')
-            .reduce((accum, current) => accum.concat(current), []);
+            .reduce((accum, current) => accum.concat(current), [])
+            .filter(media => media.content_type == 'video/mp4')
           
       if (!media) {return;} 
       helper.createUserIfNotExist(tweetOwner).then(function(user){
