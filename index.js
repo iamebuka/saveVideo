@@ -39,19 +39,19 @@ function handleStream(event){
   if ( parentTweet &&  parentTweetOwner !== 'save_video') {
 
     //retrieve tweet id && return tweet parent
-    twitterClient.get('statuses/show', { id: parentTweet }, function(err, tweet) {
-        if (err) throw new Error(err);
+    twitterClient.get('statuses/show', { id: parentTweet, include_entities: true, tweet_mode :'extended' }, function(err, tweet) {
+        if (err) console.log('stateus/show error', err);
+      
         if (tweet.extended_entities) {
           //if tweet contains media
           let media = tweet.extended_entities.media
             .filter(media => media.type == 'video')
             .map(media => media.video_info.variants)
+            .map(media => media.content_type == 'video/mp4')
             .reduce((accum, current) => accum.concat(current), []);
-
-          if (!media) {return;} 
-
+          
+      if (!media) {return;} 
       helper.createUserIfNotExist(tweetOwner).then(function(user){
-        
         data.create({
           media,
           original_tweetUrl: '',
@@ -59,8 +59,7 @@ function handleStream(event){
           generated_date: new Date(),
           user_id: user._id
         }, function(err){
-          
-          replyTweet(tweetOwner, media[0].url, tweetID)
+            replyTweet(tweetOwner, media[0].url, tweetID)
           console.log('meow')
       
       })
@@ -75,8 +74,8 @@ function replyTweet(screen_name, link, tweetID, callback){
   let status = helper.messageTemplate(screen_name,link)
   console.log('status', status, tweetID)
   twitterClient.post('statuses/update',{status, in_reply_to_status_id: tweetID }, function(err, tweet){
-    if(err) throw err;
-    console.log("tweet",tweet)
+    if(err) console.log(err);
+    console.log('tweet',tweet)
   })
 }
  
@@ -89,6 +88,7 @@ new cronJob('0 */15 * * * *', function() {
 twitterClient.stream('statuses/filter', { track: '@save_video' }, function(stream) {
   
   stream.on('data', function(event) {
+    console.log(event.text)
    handleStream(event)
   });
 
