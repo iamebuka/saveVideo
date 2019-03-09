@@ -4,11 +4,12 @@ const data = require('../model/data');
 
 function createUserIfNotExist(screen_name){
     return new Promise((resolve, reject) => {
-    user.findOne({screen_name}).lean().exec().then(users => {
+    let username = screen_name.toLowerCase()
+    user.findOne({screen_name: username}).lean().exec().then(users => {
         if(users) resolve(users);
         if(users == null){
             let u = new user({
-                screen_name,
+                screen_name: username,
                 created_date: new Date()
             })
             u.save().then(nuser => resolve(nuser))

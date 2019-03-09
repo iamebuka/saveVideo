@@ -32,7 +32,7 @@ function handleStream(event){
   //only return value for replies to tweet where original tweet isnt bot that includes save as tweet 
   let tweet = event.text;
   let tweetID = event.id_str;
-  let tweetOwner = event.user.screen_name.toLowerCase();
+  let tweetOwner = event.user.screen_name;
   let parentTweet = event.in_reply_to_status_id_str;
   let parentTweetOwner = event.in_reply_to_screen_name
  
