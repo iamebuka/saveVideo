@@ -18,6 +18,6 @@ function createUserIfNotExist(screen_name){
   })}
 
 function messageTemplate(screen_name, link){
-    return "@" + String(screen_name) + " click " + String(link) + " to download. you can always visit http://www.savetwittervideo.me/downloads/" + String(screen_name) + " to download your recent videos";
+    return "@" + String(screen_name).trim() + " your download is ready at http://www.savetwittervideo.me/downloads/" + String(screen_name);
   }
 module.exports = {createUserIfNotExist, messageTemplate}
