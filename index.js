@@ -73,7 +73,7 @@ function replyTweet(screen_name, link, tweetID, callback){
   
   let status = helper.messageTemplate(screen_name,link)
   console.log('status', status, tweetID)
-  twitterClient.post('statuses/update',{status, in_reply_to_status_id: tweetID }, function(err, tweet){
+  twitterClient.post('statuses/update',{status: status, in_reply_to_status_id: tweetID, auto_populate_reply_metadata: true }, function(err, tweet){
     if(err) console.log(err);
     console.log('tweet',tweet)
   })
