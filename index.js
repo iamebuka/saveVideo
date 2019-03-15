@@ -93,7 +93,7 @@ twitterClient.stream('statuses/filter', { track: '@save_video' }, function(strea
   });
 
   stream.on('error', function(error) {
-    throw error;
+    console.log(error);
   });
 });
 
