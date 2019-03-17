@@ -59,7 +59,7 @@ function handleStream(event){
           generated_date: new Date(),
           user_id: user._id
         }, function(err){
-            replyTweet(tweetOwner, media[0].url, tweetID)
+            replyTweet(tweetOwner, tweetID)
           console.log('meow')
       
       })
@@ -69,9 +69,9 @@ function handleStream(event){
 }
 
 
-function replyTweet(screen_name, link, tweetID, callback){
+function replyTweet(screen_name, tweetID, callback){
   
-  let status = helper.messageTemplate(screen_name,link)
+  let status = helper.messageTemplate(screen_name)
   console.log('status', status, tweetID)
   twitterClient.post('statuses/update',{status: status, in_reply_to_status_id: tweetID}, function(err, tweet){
     if(err) console.log(err);
