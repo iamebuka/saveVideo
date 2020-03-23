@@ -12,7 +12,7 @@ require('dotenv').config();
 const app = express();
 const data = require('./model/data');
 
-mongoose.connect(`mongodb://${process.env.dbuser}:${process.env.dbpass}@ds159185.mlab.com:59185/dbsavevideo`,{ useNewUrlParser: true });
+mongoose.connect(`mongodb://${process.env.dbuser}:${process.env.dbpass}@ds159185.mlab.com:59185/dbsavevideo`, { useNewUrlParser: true });
 
 const twitterClient = new twitter({
   consumer_key: process.env.consumer_key,
@@ -24,84 +24,86 @@ const twitterClient = new twitter({
 app.set('views', './views');
 app.set('view engine', 'ejs');
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', indexRouter);
 
-function handleStream(event){
-  
+function handleStream(event) {
+
   //only return value for replies to tweet where original tweet isnt bot that includes save as tweet 
   let tweet = event.text;
   let tweetID = event.id_str;
   let tweetOwner = event.user.screen_name;
   let parentTweet = event.in_reply_to_status_id_str;
   let parentTweetOwner = event.in_reply_to_screen_name
- 
-  if ( parentTweet &&  parentTweetOwner !== 'save_video') {
+
+  if (parentTweet && parentTweetOwner !== 'save_video') {
 
     //retrieve tweet id && return tweet parent
-    twitterClient.get('statuses/show', { id: parentTweet, include_entities: true, tweet_mode :'extended' }, function(err, tweet) {
-        if (err) console.log('stateus/show error', err);
-      
-        if (tweet.extended_entities) {
-          //if tweet contains media
-          let media = tweet.extended_entities.media
-            .filter(media => media.type == 'video')
-            .map(media => media.video_info.variants)
-            .reduce((accum, current) => accum.concat(current), [])
-            .filter(media => media.content_type == 'video/mp4')
-          
-      if (!media) {return;} 
-      helper.createUserIfNotExist(tweetOwner).then(function(user){
-        data.create({
-          media,
-          original_tweetUrl: '',
-          original_tweetID: tweet.id_str,
-          generated_date: new Date(),
-          user_id: user._id
-        }, function(err){
-            replyTweet(tweetOwner, tweetID)
-          console.log('meow')
-      
-      })
-      })} //console.log('doesnt contain a video');
-      });
+    twitterClient.get('statuses/show', { id: parentTweet, include_entities: true, tweet_mode: 'extended' }, function (err, tweet) {
+      if (err) console.log('stateus/show error', err);
+
+      if (tweet.extended_entities) {
+        // if tweet contains media
+        const media = tweet.extended_entities.media
+          .filter(media => media.type == 'video')
+          .map(media => media.video_info.variants)
+          .reduce((accum, current) => accum.concat(current), [])
+          .filter(media => media.content_type == 'video/mp4')
+
+        if (media & media.length) {
+          helper.createUserIfNotExist(tweetOwner).then(function (user) {
+            /* create user and save record, if successful reply user*/
+            data.create({
+              media,
+              original_tweetUrl: '',
+              original_tweetID: tweet.id_str,
+              generated_date: new Date(),
+              user_id: user._id
+            }, function (err) {
+              replyTweet(tweetOwner, tweetID)
+              console.log('meow')
+
+            })
+          })
+        }
+      } //console.log('doesnt contain a video');
+    });
   }
 }
 
 
-function replyTweet(screen_name, tweetID, callback){
-  
+function replyTweet(screen_name, tweetID, callback) {
   let status = helper.messageTemplate(screen_name)
-  console.log('status', status, tweetID)
-  twitterClient.post('statuses/update',{status: status, in_reply_to_status_id: tweetID}, function(err, tweet){
-    if(err) console.log(err);
-    console.log('tweet',tweet)
+  twitterClient.post('statuses/update', { status: status, in_reply_to_status_id: tweetID }, function (err, tweet) {
+    if (err) console.log(err);
+
   })
 }
- 
+
 
 //start cronJob to reset counter value every 15Minutes
-new cronJob('0 */15 * * * *', function() {
+new cronJob('0 */15 * * * *', function () {
   console.log('You will see this message every second');
 }, null, true, 'America/Los_Angeles');
 
-twitterClient.stream('statuses/filter', { track: '@save_video' }, function(stream) {
-  
-  stream.on('data', function(event) {
-    console.log(event.text)
-   handleStream(event)
+twitterClient.stream('statuses/filter', { track: '@save_video' }, function (stream) {
+
+  stream.on('data', function (event) {
+      handleStream(event)
   });
 
-  stream.on('error', function(error) {
+  stream.on('error', function (error) {
     console.log(error);
   });
+
 });
 
-setInterval(function(){
+setInterval(function () {
   https.get('https://savevideo.herokuapp.com/')
-}, 300000) 
+}, 300000)
 
-app.get('*', function(req, res){
-  res.render('error', {message: 'we are trying to resolve this'})
+app.get('*', function (req, res) {
+  res.render('error', { message: 'we are trying to resolve this' })
 })
+
 app.listen(process.env.PORT || 3001);

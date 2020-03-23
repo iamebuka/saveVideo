@@ -1,72 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script  src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title><%= screen_name%>'s videos</title>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80337204-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <title><%= screen_name%>'s videos</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80337204-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'UA-80337204-2');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-2203418581094896",
-          enable_page_level_ads: true
-     });
-</script>
+    gtag('config', 'UA-80337204-2');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2203418581094896",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <script type="text/javascript">
+    window._mNHandle = window._mNHandle || {};
+    window._mNHandle.queue = window._mNHandle.queue || [];
+    medianet_versionId = "3121199";
+  </script>
+  <script src="https://contextual.media.net/dmedianet.js?cid=8CUZDH9Y0" async="async"></script>
 </head>
+
 <body>
 
-<div class="container">
-<br>
-<h1 class="title has-text-warning">saveVideo</h1>
-<div class="columns">
-<div class="column is-half is-offset-one-quarter">
- <h1 class="title" style='color:#eb9316'><%= screen_name%>'s videos</h1>
-</div>
+  <div class="container">
+    <br>
+    <h1 class="title has-text-warning">saveVideo</h1>
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <h1 class="title" style='color:#eb9316'><%= screen_name%>'s videos</h1>
+      </div>
 
-</div>
+    </div>
 
 
 
-<% results.forEach(function(result){ %>
-<div class="columns is-desktop">
-<div class="column is-half is-offset-one-quarter">
-<div class="card">
-<div class="card-image">
-  <figure class="image">
-  <video width="100%" height="240" controls>
-  <%result.media.forEach(function(media){%>
-  <source src="<%= media.url %>" type="<%= media.content_type%>">
-  <%})%>
-  </video>
-  </figure>
-</div>
-<div class="card-content">
-  <div class="content">
-       <time datetime="2016-1-1"><%= result.generated_date%></time>
+    <% results.forEach(function(result){ %>
+    <div class="columns is-desktop">
+      <div id="201543714">
+        <script type="text/javascript">
+            try {
+                window._mNHandle.queue.push(function (){
+                    window._mNDetails.loadTag("201543714", "300x250", "201543714");
+                });
+            }
+            catch (error) {}
+        </script>
+    </div>
+      <div class="column is-half is-offset-one-quarter">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image">
+              <video width="100%" height="240" controls>
+                <%result.media.forEach(function(media){%>
+                <source src="<%= media.url %>" type="<%= media.content_type%>">
+                <%})%>
+              </video>
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <time datetime="2016-1-1"><%= result.generated_date%></time>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a href="<%= result.media[0].url%>" class="card-footer-item button is-warning" download>Download</a>
+            <br>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+
   </div>
-</div>
-<footer class="card-footer">
-  <a href="<%= result.media[0].url%>" class="card-footer-item button is-warning" download>Download</a>
-  <br>
-</footer>
-</div>
-</div>
-</div>
-<% }); %>
-
-</div>
 </body>
+
 </html>
