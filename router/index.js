@@ -23,7 +23,7 @@ router
           res.render("error", { message: "page doesnt exist" });
         } else {
           dbdata
-            .find({ user_id: ObjectId(user._id) }).sort({ 'generated_date': -1 })
+            .find({ user_id: ObjectId(user._id) }).sort({ 'generated_date': -1 }.limit(6))
             .then(results => {
               /** @description return only results containing media */
               results = results.filter(result => result.media)
