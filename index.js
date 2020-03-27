@@ -49,8 +49,9 @@ function handleStream(event) {
           .map(media => media.video_info.variants)
           .reduce((accum, current) => accum.concat(current), [])
           .filter(media => media.content_type == 'video/mp4')
-
-        if (media & media.length) {
+          
+        if (media && media.length) {
+          
           helper.createUserIfNotExist(tweetOwner).then(function (user) {
             /* create user and save record, if successful reply user*/
             data.create({
