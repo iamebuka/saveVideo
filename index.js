@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const twitter = require('twitter');
@@ -23,6 +24,7 @@ const twitterClient = new twitter({
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
+app.use(express.static(path.resolve(__dirname + '/public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', indexRouter);
