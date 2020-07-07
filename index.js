@@ -101,10 +101,6 @@ twitterClient.stream('statuses/filter', { track: '@save_video' }, function (stre
 
 });
 
-// setInterval(function () {
-//   https.get('https://savevideo.herokuapp.com/')
-// }, 300000)
-
 app.get('*', function (req, res) {
   res.render('error', { message: 'we are trying to resolve this' })
 })
