@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+  <link rel="stylesheet" href="/style/main.css">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -25,58 +25,72 @@
 
 </head>
 
-<body>
-
+<body class="pt-5">
+  <header class="bg-primary fixed-top">
+    <div class="container">
+      <nav class="navbar  navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">SaveTwitterVideo</a>
+        <form class="form-inline my-2 my-lg-0" method="POST" action="/downloads">
+          <input id="screen_name" class="form-control mr-sm-2" type="search" name="screen_name"
+                      placeholder="Enter Twitter screen name" aria-label="Search">
+          <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      
+      </nav>
+    </div>
+  </header>
   <div class="container">
     <br>
-    <h1 class="title has-text-warning">saveVideo</h1>
-    <div class="columns">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- top ads -->
-      <ins class="adsbygoogle" 
-        style="display:block"
-        data-ad-client="ca-pub-2203418581094896"
-        data-ad-slot="6713495937"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-      <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <div class="column is-half is-offset-one-quarter">
-        <h1 class="title" style='color:#eb9316'><%= screen_name%>'s videos</h1>
+    <div class="row">
+      <h1 class="" style='color:#eb9316'>@<%= screen_name%>'s videos</h1>
+      <div class="col-12">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- top ads -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2203418581094896"
+          data-ad-slot="6713495937" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </div>
 
     </div>
 
 
+    <div class="row">
+      <div class="col-sm-9 col-12">
+        <div class="card-columns">
+          <% results.forEach(function(result){ %>
 
-    <% results.forEach(function(result){ %>
-    <div class="columns is-desktop">
-      <div class="column is-half is-offset-one-quarter">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image">
-              <video width="100%" height="240" controls>
+
+          <div class="card">
+            <div class="card-img">
+              <video width="100%" class="embed-responsive-item" controls>
                 <%result.media.forEach(function(media){%>
                 <source src="<%= media.url %>" type="<%= media.content_type%>">
                 <%})%>
               </video>
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="content">
-              <time datetime="2016-1-1"><%= result.generated_date%></time>
+            </div>
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted"><%= result.generated_date%></small></p>
+              <a href="<%= result.media[0].url%>" style="color: #fff;" class="btn btn-warning rounded-circle float-right" download><i class="fas fa-arrow-down"></i></a>
+              <div class="float-none">.</div>
             </div>
           </div>
-          <footer class="card-footer">
-            <a href="<%= result.media[0].url%>" class="card-footer-item button is-warning" download>Download</a>
-            <br>
-          </footer>
+
+
+          <% }); %>
         </div>
       </div>
+      <div class="col-sm-3 col-12">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- right ads -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2203418581094896"
+          data-ad-slot="6034854995" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
     </div>
-    <% }); %>
-
   </div>
 </body>
 
