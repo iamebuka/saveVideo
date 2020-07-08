@@ -32,10 +32,10 @@
         <a class="navbar-brand" href="/">SaveTwitterVideo</a>
         <form class="form-inline my-2 my-lg-0" method="POST" action="/downloads">
           <input id="screen_name" class="form-control mr-sm-2" type="search" name="screen_name"
-                      placeholder="Enter Twitter screen name" aria-label="Search">
+            placeholder="Enter Twitter screen name" aria-label="Search">
           <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
-      
+
       </nav>
     </div>
   </header>
@@ -72,9 +72,20 @@
             </div>
             <div class="card-body">
               <p class="card-text"><small class="text-muted"><%= result.generated_date%></small></p>
-              <a href="<%= result.media[0].url%>" style="color: #fff;" class="btn btn-warning rounded-circle float-right" download><i class="fas fa-arrow-down"></i></a>
+              <a href="<%= result.media[0].url%>" style="color: #fff;"
+                class="btn btn-warning rounded-circle float-right" download><i class="fas fa-arrow-down"></i></a>
               <div class="float-none">.</div>
             </div>
+          </div>
+
+          <div class="card">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- card ad -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2203418581094896"
+              data-ad-slot="5500147305" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
           </div>
 
 
