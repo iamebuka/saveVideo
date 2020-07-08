@@ -101,7 +101,7 @@ twitterClient.stream('statuses/filter', { track: '@save_video' }, function (stre
 
 });
 
-app.get('*', function (req, res) {
+app.use(function (err, req, res, next) {
   res.render('error', { message: 'we are trying to resolve this' })
 })
 
