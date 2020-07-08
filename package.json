@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "eslint index.js && nodemon index.js"
+    "start": "npm run build:bootstrap && npm run lint && nodemon index.js",
+    "lint": "eslint index.js",
+    "build:bootstrap": "webpack"
   },
   "author": "",
   "license": "ISC",
@@ -18,10 +19,22 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "mongoose": "^5.4.17",
+    "popper.js": "^1.16.1",
     "redis": "^2.8.0",
     "twitter": "^1.7.1"
   },
   "devDependencies": {
-    "eslint": "^5.15.0"
+    "autoprefixer": "^9.8.4",
+    "bootstrap": "^4.5.0",
+    "css-loader": "^3.6.0",
+    "eslint": "^5.15.0",
+    "jquery": "^3.5.1",
+    "mini-css-extract-plugin": "^0.9.0",
+    "postcss": "^7.0.32",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0"
   }
 }
