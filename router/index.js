@@ -51,6 +51,8 @@ router.get("/downloads/:user", function (req, res, next) {
 
 router.get("/downloads", function (req, res, next) {
   let URL = req.query.URL;
+  if(!URL) res.redirect("/");
+
   let numberMatches = URL.match(/(\d+)/);
   if (numberMatches && numberMatches.length && URL.indexOf("https://twitter.com") > -1) {
     
