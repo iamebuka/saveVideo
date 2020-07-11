@@ -111,7 +111,7 @@ new cronJob(
 
 
 app.use(function (err, req, res, next) {
-  res.render("error", { message: "we are trying to resolve this" });
+   res.render("error", { message: err.message });
 });
 
 app.listen(process.env.PORT || 3001);
