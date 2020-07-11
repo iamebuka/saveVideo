@@ -52,7 +52,8 @@ router.get("/downloads/:user", function (req, res, next) {
 router.get("/downloads", function (req, res, next) {
   let URL = req.query.URL;
   if(!URL || !URL.length) return res.redirect("/");
-  let numberMatches = URL.match(/(\d+)/);
+  let URLParam = URL.slice(URL.lastIndexOf("/") + 1);
+  let numberMatches = URLParam.match(/(\d+)/);
   if (numberMatches && numberMatches.length && URL.indexOf("https://twitter.com") > -1) {
     
     //retrieve tweet id && return tweet parent
