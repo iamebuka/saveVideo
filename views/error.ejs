@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/style/main.css">
     <link href="https://fonts.googleapis.com/css?family=Laila" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -20,18 +20,26 @@
 
 </head>
 <body>
+  <header class="bg-primary fixed-top">
+    <div class="container">
+      <nav class="navbar  navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">SaveTwitterVideo</a>
+        <form class="form-inline my-2 my-lg-0" method="POST" action="/downloads">
+          <input id="screen_name" class="form-control mr-sm-2" type="search" name="screen_name"
+            placeholder="Enter Twitter screen name" aria-label="Search">
+          <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+      </nav>
+    </div>
+  </header>
     <div class="container">
     <br/>
     <br/>
-    <div class="colums">
-      <div class="column is-half is-offset-one-quarter">
-        <h1 class="title has-text-warning">savevideo</h1>
-      </div>
-    </div>
-    <div class="colums">
-        <div class="column is-half is-offset-one-quarter">
+    <div class="row">
+        <div class="col-8 my-8">
           <h1>Oops!! Nothing to see here</h1>
-          <p><%= message%></p>
+          <h4><%= message%></h4>
         </div>
       </div>
     </div>
