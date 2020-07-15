@@ -51,37 +51,52 @@ router.get("/downloads/:user", function (req, res, next) {
 
 router.get("/downloads", function (req, res, next) {
   let URL = req.query.URL;
-  if(!URL || !URL.length) return res.redirect("/");
-  let URLParam = URL.slice(URL.lastIndexOf("/") + 1);
-  let numberMatches = URLParam.match(/(\d+)/);
-  if (numberMatches && numberMatches.length && URL.indexOf("https://twitter.com") > -1) {
-    
-    //retrieve tweet id && return tweet parent
-    let tweetId = numberMatches[0];
-    twitterClient.get("statuses/show", { id: tweetId, include_entities: true, tweet_mode: "extended" },
+  if (!URL || !URL.length) return res.redirect("/");
+
+  if (URL.indexOf("https://twitter.com") > -1) {
+    let URLParam = URL.slice(URL.lastIndexOf("/") + 1); // Extract the status ID part of the URL path
+    let numberMatches = URLParam.match(/(\d+)/); // Extract the status ID
+
+    if (numberMatches && numberMatches.length) {
+      //retrieve tweet id && return tweet parent
+      let tweetId = numberMatches[0];
+      twitterClient.get(
+        "statuses/show",
+        { id: tweetId, include_entities: true, tweet_mode: "extended" },
         function (err, tweet) {
-        if (err) next(new Error("Unknown Server Error Occured"));
-        if (tweet.extended_entities) {
-          // if tweet contains media
-          
-          const media = tweet.extended_entities.media
-            .filter((media) => media.type == "video")
-            .map((media) => media.video_info.variants)
-            .reduce((accum, current) => accum.concat(current), [])
-            .filter((media) => media.content_type == "video/mp4" );
-          
-          if (media && media.length) {
-             let URL = media[media.length - 1].url;
-             res.set("Content-Disposition", "attachment;filename=video.mp4");
-             downloader(URL).then(resp => {resp.data.pipe(res)})
+          if (err) next(new Error("Unknown Server Error Occured"));
+          if (tweet.extended_entities) {
+            // if tweet contains media
+
+            const media = tweet.extended_entities.media
+              .filter((media) => media.type == "video")
+              .map((media) => media.video_info.variants)
+              .reduce((accum, current) => accum.concat(current), [])
+              .filter((media) => media.content_type == "video/mp4");
+
+            if (media && media.length) {
+              let URL = media[media.length - 1].url;
+              res.set("Content-Disposition", "attachment;filename=video.mp4");
+              downloader(URL).then((resp) => {
+                resp.data.pipe(res);
+              });
+            }
+          } else {
+            next(new Error("Invalid Twitter URL")); // if host is same but no tweet with no tweet containing video
           }
-        } else {
-          next(new Error("Invalid Twitter URL")); // if host is same but no tweet with no tweet containing video
         }
-      }
-    );
+      );
+    } else {
+      next(new Error("Invalid Twitter URL")); // if link isnt twitter link
+    }
+  } else if (URL.indexOf("https://video.twimg.com") > -1) {
+    res.set("Content-Disposition", "attachment;filename=video.mp4");
+    downloader(URL).then((resp) => {
+      resp.data.pipe(res);
+    });
+    
   } else {
-    next(new Error("Invalid Twitter URL")); // if link isnt twitter link
+    res.redirect("/"); // if host doesnt match any of the host above, redirect to home page
   }
 });
 
@@ -91,7 +106,7 @@ async function downloader(path) {
     url: path,
     responseType: "stream",
   });
- 
+
   return response;
 }
 
