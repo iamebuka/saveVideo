@@ -13,7 +13,7 @@ require("dotenv").config();
 const app = express();
 const data = require("./model/data");
 
-mongoose.connect(`mongodb://${process.env.dbuser}:${process.env.dbpass}@ds159185.mlab.com:59185/dbsavevideo`, { useNewUrlParser: true });
+mongoose.connect(process.env.connection_uri, { useNewUrlParser: true });
 
 const twitterClient = new twitter({
   consumer_key: process.env.consumer_key,
