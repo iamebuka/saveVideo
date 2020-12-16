@@ -39,7 +39,6 @@ router.get("/downloads/:user", function (req, res, next) {
           .then((results) => {
             /** @description return only results containing media */
             results = results.filter((result) => result.media);
-            console.log("results", results);
             res.render("download", { screen_name, results });
           })
           .catch((err) => next(""));
