@@ -3,6 +3,7 @@ const schema =  mongoose.Schema;
 
 const dataSchema = new schema({
     media: [Object],
+    text: String,
     original_tweetUrl: String,
     original_tweetID: String,
     generated_date: Date,

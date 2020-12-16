@@ -39,14 +39,16 @@ function handleStream(event) {
 
   if (parentTweet && parentTweetOwner !== "save_video") {
     //retrieve tweet id && return tweet parent
-    twitterClient.get("statuses/show",
+    twitterClient.get(
+      "statuses/show",
       { id: parentTweet, include_entities: true, tweet_mode: "extended" },
       function (err, tweet) {
         if (err) console.log("stateus/show error", err);
+        let { full_text, extended_entities } = tweet;
 
-        if (tweet.extended_entities) {
+        if (extended_entities) {
           // if tweet contains media
-          const media = tweet.extended_entities.media
+          const media = extended_entities.media
             .filter((media) => media.type == "video")
             .map((media) => media.video_info.variants)
             .reduce((accum, current) => accum.concat(current), [])
@@ -58,6 +60,7 @@ function handleStream(event) {
               data.create(
                 {
                   media,
+                  text: full_text,
                   original_tweetUrl: "",
                   original_tweetID: tweet.id_str,
                   generated_date: new Date(),
@@ -87,7 +90,6 @@ function replyTweet(screen_name, tweetID, callback) {
   );
 }
 
-
 var stream = twitterClient.stream("statuses/filter", { track: "@save_video" });
 
 stream.on("tweet", function (event) {
@@ -109,9 +111,8 @@ new cronJob(
   "America/Los_Angeles"
 );
 
-
 app.use(function (err, req, res, next) {
-   res.render("error", { message: err.message });
+  res.render("error", { message: err.message });
 });
 
 app.listen(process.env.PORT || 3001);

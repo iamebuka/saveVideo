@@ -113,6 +113,7 @@
               </video>
             </div>
             <div class="card-body">
+              <p class="card-text"><small><%= result.text%> </small></p>
               <p class="card-text"><small class="text-muted"><%= result.generated_date%></small></p>
               <a href="/downloads?URL=<%= result.media[0].url%>" style="color: #fff;"
                 class="btn btn-warning rounded-circle float-right" download><i class="fas fa-arrow-down"></i></a>
