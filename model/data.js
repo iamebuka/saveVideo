@@ -10,7 +10,7 @@ const dataSchema = new schema({
     user_id: { type: mongoose.Schema.ObjectId, required: true},
 })
 
-dataSchema.index({ "generated_date": 1, "user_id": 1 }, {  expireAfterSeconds: 60 * 60 * 24 });
+dataSchema.index({ "generated_date": 1, "user_id": 1 }, {  expires: 60 * 60 * 24 });
 
 let datamodel = mongoose.model("tbvideo", dataSchema)
 
