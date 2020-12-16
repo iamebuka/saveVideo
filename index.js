@@ -93,7 +93,7 @@ function replyTweet(screen_name, tweetID, callback) {
 var stream = twitterClient.stream("statuses/filter", { track: "@save_video" });
 
 stream.on("tweet", function (event) {
-  handleStream(event);
+  // handleStream(event);
 });
 
 stream.on("error", function (error) {
@@ -102,9 +102,18 @@ stream.on("error", function (error) {
 
 //start cronJob to reset counter value every 15Minutes
 new cronJob(
-  "0 */15 * * * *",
+  "0 0 * * *",
   function () {
-    console.log("You will see this message every second");
+    console.log("******* cron job *******")
+    let now = new Date();
+    now.setHours(now.getHours() - 24);
+    data.deleteMany({ generated_date: { $lt: now } }, (err, res) => {
+      if (err) {
+        console.log("an error occured");
+      } else {
+        console.log(res.deletedCount, " items deleted");
+      }
+    });
   },
   null,
   true,
