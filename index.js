@@ -93,7 +93,7 @@ function replyTweet(screen_name, tweetID, callback) {
 var stream = twitterClient.stream("statuses/filter", { track: "@save_video" });
 
 stream.on("tweet", function (event) {
-  // handleStream(event);
+  handleStream(event);
 });
 
 stream.on("error", function (error) {
