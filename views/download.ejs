@@ -1,122 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style/main.css" />
+    <script type="text/javascript" src="/js/main.bundle.js"></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/style/main.css">
-  <script type="text/javascript" src="/js/main.bundle.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  
-  <link rel="canonical" href="https://savetwittervideo.me">
-  <meta name="description" content="Looking for how to download twitter video(s) on your android, iphone or desktop devices. Copy link to twitter post, paste it in the box below & click the download button to download immediately.">
-  <meta name="keyword"  content="Download, Twitter, Twitter Download, download twitter video(s)">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@save_video">
-  <meta property="og:url" content="https://www.savetwittervideo.me/">
-  <meta property="og:title" content="Download Twitter Videos" />
- 
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="canonical" href="https://savetwittervideo.me" />
+    <meta
+      name="description"
+      content="Looking for how to download twitter video(s) on your android, iphone or desktop devices. Copy link to twitter post, paste it in the box below & click the download button to download immediately."
+    />
+    <meta
+      name="keyword"
+      content="Download, Twitter, Twitter Download, download twitter video(s)"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@save_video" />
+    <meta property="og:url" content="https://www.savetwittervideo.me/" />
+    <meta property="og:title" content="Download Twitter Videos" />
 
-  <title><%= screen_name%>'s videos | Download Twitter video(s)</title>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80337204-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    gtag('config', 'UA-80337204-2');
-  </script>
+    <title><%= screen_name%>'s videos | Download Twitter video(s)</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-80337204-2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  <script data-ad-client="ca-pub-2203418581094896" async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      gtag("config", "UA-80337204-2");
+    </script>
+
+    <!-- Adsense -->
+    <script
+      data-ad-client="ca-pub-4004058072612454"
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    ></script>
 
     <!-- Hotjar Tracking Code for www.savetwittervideo.me -->
-<script>
-  (function(h,o,t,j,a,r){
-      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-      h._hjSettings={hjid:1899739,hjsv:6};
-      a=o.getElementsByTagName('head')[0];
-      r=o.createElement('script');r.async=1;
-      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-      a.appendChild(r);
-  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
+    <script>
+      (function (h, o, t, j, a, r) {
+        h.hj =
+          h.hj ||
+          function () {
+            (h.hj.q = h.hj.q || []).push(arguments);
+          };
+        h._hjSettings = { hjid: 1899739, hjsv: 6 };
+        a = o.getElementsByTagName("head")[0];
+        r = o.createElement("script");
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+    </script>
 
-<!-- media net -->
-<script type="text/javascript">
-  window._mNHandle = window._mNHandle || {};
-  window._mNHandle.queue = window._mNHandle.queue || [];
-  medianet_versionId = "3121199";
-</script>
-<script src="https://contextual.media.net/dmedianet.js?cid=8CU737J5H" async="async"></script>
+    <!-- media net -->
+    <script type="text/javascript">
+      window._mNHandle = window._mNHandle || {};
+      window._mNHandle.queue = window._mNHandle.queue || [];
+      medianet_versionId = "3121199";
+    </script>
+    <script
+      src="https://contextual.media.net/dmedianet.js?cid=8CU737J5H"
+      async="async"
+    ></script>
+  </head>
 
-
-</head>
-
-<body class="pt-sm-5 pt-10">
-  <header class="bg-primary fixed-top">
+  <body class="pt-sm-5 pt-10">
+    <header class="bg-primary fixed-top">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <a class="navbar-brand" href="/">SaveTwitterVideo</a>
+          <form
+            class="form-inline my-2 my-lg-0"
+            method="POST"
+            action="/downloads"
+          >
+            <input
+              id="screen_name"
+              class="form-control mr-sm-2"
+              type="search"
+              name="screen_name"
+              placeholder="Enter Twitter screen name"
+              aria-label="Search"
+            />
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">
+              Find my downloads
+            </button>
+          </form>
+        </nav>
+      </div>
+    </header>
     <div class="container">
-      <nav class="navbar  navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="/">SaveTwitterVideo</a>
-        <form class="form-inline my-2 my-lg-0" method="POST" action="/downloads">
-          <input id="screen_name" class="form-control mr-sm-2" type="search" name="screen_name"
-            placeholder="Enter Twitter screen name" aria-label="Search">
-          <button class="btn btn-primary my-2 my-sm-0" type="submit">Find my downloads</button>
-        </form>
-
-      </nav>
-    </div>
-  </header>
-  <div class="container">
-    <br>
-    <div class="row">
-      <div class="col-12">
-        <h2 class="" style='color:#eb9316'>@<%= screen_name%>'s videos</h2>
-        <p class="text-sm-left text-muted"><i class="fas fa-eye"></i> Showing downloads in the last 24 hours.</p>
-        <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
-        <!-- top ads -->
-        <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2203418581094896"
+      <br />
+      <div class="row">
+        <div class="col-12">
+          <h2 class="" style="color: #eb9316">@<%= screen_name%>'s videos</h2>
+          <p class="text-sm-left text-muted">
+            <i class="fas fa-eye"></i> Showing downloads in the last 24 hours.
+          </p>
+          <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+          <!-- top ads -->
+          <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2203418581094896"
           data-ad-slot="6713495937" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script> -->
 
-        <div id="164025917">
-          <script type="text/javascript">
+          <div id="164025917">
+            <script type="text/javascript">
               try {
-                  window._mNHandle.queue.push(function (){
-                      window._mNDetails.loadTag("164025917", "300x250", "164025917");
-                  });
-              }
-              catch (error) {}
-          </script>
+                window._mNHandle.queue.push(function () {
+                  window._mNDetails.loadTag(
+                    "164025917",
+                    "300x250",
+                    "164025917"
+                  );
+                });
+              } catch (error) {}
+            </script>
+          </div>
+        </div>
       </div>
-      </div>
 
-    </div>
-
-
-    <div class="row">
-      <div class="col-sm-6 col-12">
+      <div class="row">
+        <div class="col-sm-6 col-12">
           <% results.forEach(function(result){ %>
-
 
           <div class="card">
             <div class="card-img">
               <video width="100%" class="embed-responsive-item" controls>
                 <%result.media.forEach(function(media){%>
-                <source src="<%= media.url %>" type="<%= media.content_type%>">
+                <source
+                  src="<%= media.url %>"
+                  type="<%= media.content_type%>"
+                />
                 <%})%>
               </video>
             </div>
             <div class="card-body">
               <p class="card-text"><small><%= result.text%> </small></p>
-              <p class="card-text"><small class="text-muted"><%= result.generated_date%></small></p>
-              <a href="/downloads?URL=<%= result.media[0].url%>" style="color: #fff;"
-                class="btn btn-warning rounded-circle float-right" download><i class="fas fa-arrow-down"></i></a>
+              <p class="card-text">
+                <small class="text-muted"><%= result.generated_date%></small>
+              </p>
+              <a
+                href="/downloads?URL=<%= result.media[0].url%>"
+                style="color: #fff"
+                class="btn btn-warning rounded-circle float-right"
+                download
+                ><i class="fas fa-arrow-down"></i
+              ></a>
               <div class="float-none">.</div>
             </div>
           </div>
@@ -134,41 +180,54 @@
           <div class="card">
             <div id="164025917">
               <script type="text/javascript">
-                  try {
-                      window._mNHandle.queue.push(function (){
-                          window._mNDetails.loadTag("164025917", "300x250", "164025917");
-                      });
-                  }
-                  catch (error) {}
+                try {
+                  window._mNHandle.queue.push(function () {
+                    window._mNDetails.loadTag(
+                      "164025917",
+                      "300x250",
+                      "164025917"
+                    );
+                  });
+                } catch (error) {}
               </script>
+            </div>
           </div>
-          </div>
-
 
           <% }); %>
-      </div>
-      <div class="col-sm-3 col-12">
-        <div id="164025917">
-          <script type="text/javascript">
+        </div>
+        <div class="col-sm-3 col-12">
+          <div id="164025917">
+            <script type="text/javascript">
               try {
-                  window._mNHandle.queue.push(function (){
-                      window._mNDetails.loadTag("164025917", "300x250", "164025917");
-                  });
-              }
-              catch (error) {}
-          </script>
-      </div>
+                window._mNHandle.queue.push(function () {
+                  window._mNDetails.loadTag(
+                    "164025917",
+                    "300x250",
+                    "164025917"
+                  );
+                });
+              } catch (error) {}
+            </script>
+          </div>
 
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- right ads -->
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2203418581094896"
-          data-ad-slot="6034854995" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          ></script>
+          <!-- right ads -->
+          <ins
+            class="adsbygoogle"
+            style="display: block"
+            data-ad-client="ca-pub-2203418581094896"
+            data-ad-slot="6034854995"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
