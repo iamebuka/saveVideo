@@ -13,7 +13,7 @@ require("dotenv").config();
 const app = express();
 const data = require("./model/data");
 
-data.collection.ensureIndex({ "generated_date": 1}, {  expireAfterSeconds: 60 * 60 * 24 })
+data.collection.createIndex({ "generated_date": 1}, {  expireAfterSeconds: 60 * 60 * 24 })
 
 mongoose.connect(process.env.connection_uri, { useNewUrlParser: true });
 
