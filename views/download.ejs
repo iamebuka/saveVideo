@@ -110,7 +110,7 @@
         <div class="col-12">
           <h2 class="" style="color: #eb9316">@<%= screen_name%>'s videos</h2>
           <p class="text-sm-left text-muted">
-            <i class="fas fa-eye"></i> Showing downloads in the last 24 hours.
+            <i class="fas fa-eye"></i> Showing downloads in the last 7 days.
           </p>
           <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
           <!-- top ads -->
@@ -141,29 +141,28 @@
           <% results.forEach(function(result){ %>
 
           <div class="card">
-            <div class="card-img">
-              <video width="100%" class="embed-responsive-item" controls>
-                <%result.media.forEach(function(media){%>
-                <source
-                  src="<%= media.url %>"
-                  type="<%= media.content_type%>"
-                />
-                <%})%>
-              </video>
-            </div>
+           
             <div class="card-body">
-              <p class="card-text"><small><%= result.text%> </small></p>
-              <p class="card-text">
-                <small class="text-muted"><%= result.generated_date%></small>
-              </p>
+              <blockquote class="blockquote">
+                <p class="card-text"><%= result.text%></p>
+              </blockquote>
+              
+              
+              <a class="btn btn-primary" href="<%= result.media[0].url%>">
+                View Video
+              </a>
               <a
                 href="/downloads?URL=<%= result.media[0].url%>"
                 style="color: #fff"
-                class="btn btn-warning rounded-circle float-right"
+                class="btn btn-warning float-right"
                 download
                 ><i class="fas fa-arrow-down"></i
-              ></a>
-              <div class="float-none">.</div>
+              >&nbsp; Download</a>
+              <br><br>
+              <p class="card-text">
+                <small class="text-muted"><%= result.generated_date%></small>
+              </p>
+              
             </div>
           </div>
 
@@ -209,23 +208,6 @@
               } catch (error) {}
             </script>
           </div>
-
-          <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          ></script>
-          <!-- right ads -->
-          <ins
-            class="adsbygoogle"
-            style="display: block"
-            data-ad-client="ca-pub-2203418581094896"
-            data-ad-slot="6034854995"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          ></ins>
-          <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
         </div>
       </div>
     </div>
