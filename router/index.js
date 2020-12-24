@@ -68,7 +68,7 @@ router.get("/downloads", function (req, res, next) {
             // if tweet contains media
 
             const media = tweet.extended_entities.media
-              .filter((media) => media.type == "video")
+              .filter((media) => media.type == "video" || media.type == "animated_gif")
               .map((media) => media.video_info.variants)
               .reduce((accum, current) => accum.concat(current), [])
               .filter((media) => media.content_type == "video/mp4");

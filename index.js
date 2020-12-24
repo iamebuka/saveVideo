@@ -45,15 +45,15 @@ function handleStream(event) {
       function (err, tweet) {
         if (err) console.log("stateus/show error", err);
         let { full_text, extended_entities } = tweet;
-
+       
         if (extended_entities) {
           // if tweet contains media
           const media = extended_entities.media
-            .filter((media) => media.type == "video")
+            .filter((media) => media.type == "video" || media.type == "animated_gif")
             .map((media) => media.video_info.variants)
             .reduce((accum, current) => accum.concat(current), [])
-            .filter((media) => media.content_type == "video/mp4" || media.content_type == "image/gif");
-
+            .filter((media) => media.content_type == "video/mp4");
+            
           if (media && media.length) {
             helper.createUserIfNotExist(tweetOwner).then(function (user) {
               /* create user and save record, if successful reply user*/
@@ -68,7 +68,6 @@ function handleStream(event) {
                 },
                 function (err) {
                   replyTweet(tweetOwner, tweetID);
-                  console.log("meow");
                 }
               );
             });
