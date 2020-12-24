@@ -52,7 +52,7 @@ function handleStream(event) {
             .filter((media) => media.type == "video")
             .map((media) => media.video_info.variants)
             .reduce((accum, current) => accum.concat(current), [])
-            .filter((media) => media.content_type == "video/mp4");
+            .filter((media) => media.content_type == "video/mp4" || media.content_type == "image/gif");
 
           if (media && media.length) {
             helper.createUserIfNotExist(tweetOwner).then(function (user) {

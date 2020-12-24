@@ -36,6 +36,7 @@ router.get("/downloads/:user", function (req, res, next) {
         dbdata
           .find({ user_id: ObjectId(user._id) })
           .sort({ generated_date: -1 })
+          .limit(10)
           .then((results) => {
             /** @description return only results containing media */
             results = results.filter((result) => result.media);

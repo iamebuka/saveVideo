@@ -67,16 +67,11 @@
       })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
     </script>
 
-    <!-- media net -->
-    <script type="text/javascript">
-      window._mNHandle = window._mNHandle || {};
-      window._mNHandle.queue = window._mNHandle.queue || [];
-      medianet_versionId = "3121199";
-    </script>
-    <script
-      src="https://contextual.media.net/dmedianet.js?cid=8CU737J5H"
-      async="async"
-    ></script>
+    <style>
+      video {
+        width: 100%;
+      }
+    </style>
   </head>
 
   <body class="pt-sm-5 pt-10">
@@ -110,7 +105,7 @@
         <div class="col-12">
           <h2 class="" style="color: #eb9316">@<%= screen_name%>'s videos</h2>
           <p class="text-sm-left text-muted">
-            <i class="fas fa-eye"></i> Showing downloads in the last 7 days.
+            <i class="fas fa-eye"></i> Showing last 10 downloads.
           </p>
           <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
           <!-- top ads -->
@@ -119,20 +114,6 @@
         <script>
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script> -->
-
-          <div id="164025917">
-            <script type="text/javascript">
-              try {
-                window._mNHandle.queue.push(function () {
-                  window._mNDetails.loadTag(
-                    "164025917",
-                    "300x250",
-                    "164025917"
-                  );
-                });
-              } catch (error) {}
-            </script>
-          </div>
         </div>
       </div>
 
@@ -141,16 +122,18 @@
           <% results.forEach(function(result){ %>
 
           <div class="card">
-           
+           <video>
+            <source type="<%=result.media[0].content_type%>" src="<%=result.media[0].url%>">
+           </video>
             <div class="card-body">
               <blockquote class="blockquote">
                 <p class="card-text"><%= result.text%></p>
               </blockquote>
               
               
-              <a class="btn btn-primary" href="<%= result.media[0].url%>">
+              <!-- <a class="btn btn-primary" href="<%= result.media[0].url%>">
                 View Video
-              </a>
+              </a> -->
               <a
                 href="/downloads?URL=<%= result.media[0].url%>"
                 style="color: #fff"
@@ -176,38 +159,7 @@
             </script>
           </div> -->
 
-          <div class="card">
-            <div id="164025917">
-              <script type="text/javascript">
-                try {
-                  window._mNHandle.queue.push(function () {
-                    window._mNDetails.loadTag(
-                      "164025917",
-                      "300x250",
-                      "164025917"
-                    );
-                  });
-                } catch (error) {}
-              </script>
-            </div>
-          </div>
-
-          <% }); %>
-        </div>
-        <div class="col-sm-3 col-12">
-          <div id="164025917">
-            <script type="text/javascript">
-              try {
-                window._mNHandle.queue.push(function () {
-                  window._mNDetails.loadTag(
-                    "164025917",
-                    "300x250",
-                    "164025917"
-                  );
-                });
-              } catch (error) {}
-            </script>
-          </div>
+        <% }); %>
         </div>
       </div>
     </div>
