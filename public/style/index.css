@@ -1,0 +1,18 @@
+body {
+  font-family: "Laila", serif;
+}
+
+video {
+  width: 100%;
+}
+
+.ads_custom {
+  display: block;
+  margin-bottom: 22px;
+}
+
+.ads_custom img {
+  object-fit: fill;
+  height: 82px;
+  width: 100%;
+}
