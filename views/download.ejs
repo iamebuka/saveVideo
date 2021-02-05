@@ -121,6 +121,7 @@
       </div>
       <div class="row">
         <div class="col-sm-6 col-12">
+        <% if(results.length) { %>
           <% results.forEach(function(result){ %>
 
           <div class="card">
@@ -166,6 +167,24 @@
           </div>
 
           <% }); %>
+          <% } else { %>
+
+            <p style="font-size: 30px; text-align: center;"><i class="fas fas-ban"></i></p>
+            <h3 style="text-align: center;">No Downloads at the moment! Check back later</h3>
+            <div class="card">
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+              <!-- DownloadPageVideoFeed -->
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-4004058072612454"
+                   data-ad-slot="2288171662"
+                   data-ad-format="auto"
+                   data-full-width-responsive="true"></ins>
+              <script>
+                   (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          <% } %>
         </div>
       </div>
     </div>
