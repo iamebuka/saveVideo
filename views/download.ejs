@@ -135,7 +135,8 @@
       </div>
       <div class="row">
         <div class="col-sm-6 col-12">
-          <% if(results.length) { %> <% results.forEach(function(result){ %>
+          <% if(results.length) { %> <% results.forEach(function(result, index){
+          %>
 
           <div class="card">
             <!-- <video>
@@ -165,6 +166,7 @@
               </p>
             </div>
           </div>
+          <% if(index%2 == 0) {%>
           <div class="card">
             <script
               async
@@ -183,8 +185,9 @@
               (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
           </div>
-
-          <% }); %> <% } else { %>
+          <% }%> 
+          <% }); %> 
+          <% } else { %>
 
           <p style="font-size: 30px; text-align: center">
             <i class="fas fas-ban"></i>
