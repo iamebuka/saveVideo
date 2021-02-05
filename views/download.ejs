@@ -124,20 +124,20 @@
           <% results.forEach(function(result){ %>
 
           <div class="card">
-            <video>
+            <!-- <video>
               <source
                 type="<%=result.media[0].content_type%>"
                 src="<%=result.media[0].url%>"
               />
-            </video>
+            </video> -->
             <div class="card-body">
               <blockquote class="blockquote">
                 <p class="card-text"><%= result.text%></p>
               </blockquote>
 
-              <!-- <a class="btn btn-primary" href="<%= result.media[0].url%>">
+              <a class="btn btn-primary" href="<%= result.media[0].url%>">
                 View Video
-              </a> -->
+              </a> 
               <a
                 href="/downloads?URL=<%= result.media[0].url%>"
                 style="color: #fff"
