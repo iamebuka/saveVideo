@@ -16,3 +16,10 @@ video {
   height: 82px;
   width: 100%;
 }
+
+@media (min-width: 500px) {
+    .ads_custom img {
+        object-fit: contain;
+        height: auto;
+      }
+}
