@@ -105,7 +105,7 @@ new cronJob(
   function () {
     console.log("******* cron job *******")
     let now = new Date();
-    now.setHours(now.getHours() - 168);
+    now.setHours(now.getHours() - 48);
     data.deleteMany({ generated_date: { $lt: now } }, (err, res) => {
       if (err) {
         console.log("an error occured");
