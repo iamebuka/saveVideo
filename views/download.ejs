@@ -12,7 +12,8 @@
       src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="canonical" href="https://savetwittervideo.me" />
     <meta
       name="description"
@@ -107,8 +108,11 @@
           <a
             class="ads_custom"
             href="https://www.amazon.com/Song-Six-Seasons-Chilota-Nwabuoku/dp/9789855389/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1612477506&sr=1-6#detailBullets_feature_div"
-            ><img width="100%" src="/img/banner.poetry.jpg"
-          /></a>
+            >
+            <video loop="true" autoplay="autoplay" id="vid" muted>
+              <source src="/video/videoAd.mp4" />
+            </video>
+          </a>
         </div>
       </div>
       <div class="row">
@@ -160,5 +164,7 @@
         </div>
       </div>
     </div>
+    <script>window.savetweetSource = "downloads"</script>
+    <script src="/js/ads.js"></script>
   </body>
 </html>

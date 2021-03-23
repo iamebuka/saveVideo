@@ -3,6 +3,7 @@ let axios = require("axios");
 const twitter = require("twit");
 const dbuser = require("../model/user");
 const dbdata = require("../model/data");
+const adData = require("../model/ads");
 let router = express.Router();
 var ObjectId = require("mongoose").Types.ObjectId;
 require("dotenv").config();
@@ -16,6 +17,33 @@ const twitterClient = new twitter({
 
 router.get("/", function (req, res) {
   res.render("index");
+});
+
+router.get("/ads", function (req, res) {
+  let ads = new adData({ source: req.query.source.toLowerCase() });
+  ads
+    .save()
+    .then(function () {
+      res.status(200).json({ success: true });
+    })
+    .catch(function () {
+      res.status(500).json({ success: false });
+    });
+});
+
+router.get("/adData", function (req, res) {
+  let adSource = req.query.source.toLowerCase();
+  console.log(adSource);
+  adData
+    .find({ source: adSource })
+    .lean()
+    .exec()
+    .then(function (data) {
+      res.status(200).json({ success: true, totalAds: data.length });
+    })
+    .catch(function () {
+      res.status(500).json({ success: false });
+    });
 });
 
 router.post("/downloads", function (req, res, next) {
@@ -67,7 +95,9 @@ router.get("/downloads", function (req, res, next) {
             // if tweet contains media
 
             const media = tweet.extended_entities.media
-              .filter((media) => media.type == "video" || media.type == "animated_gif")
+              .filter(
+                (media) => media.type == "video" || media.type == "animated_gif"
+              )
               .map((media) => media.video_info.variants)
               .reduce((accum, current) => accum.concat(current), [])
               .filter((media) => media.content_type == "video/mp4");
@@ -92,7 +122,6 @@ router.get("/downloads", function (req, res, next) {
     downloader(URL).then((resp) => {
       resp.data.pipe(res);
     });
-    
   } else {
     res.redirect("/"); // if host doesnt match any of the host above, redirect to home page
   }

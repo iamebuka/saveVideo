@@ -11,15 +11,17 @@ video {
   margin-bottom: 22px;
 }
 
-.ads_custom img {
+.ads_custom video {
   object-fit: fill;
   height: 82px;
   width: 100%;
 }
 
 @media (min-width: 500px) {
-    .ads_custom img {
-        object-fit: contain;
-        height: auto;
+    .ads_custom video {
+        object-fit: contain;     
+        height: 127px;
+        object-position: left;
+        object-fit: fill;
       }
 }
