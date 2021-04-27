@@ -21,7 +21,7 @@
     "express-session": "^1.15.6",
     "mongoose": "^5.4.17",
     "popper.js": "^1.16.1",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "request": "^2.88.2",
     "twit": "^2.2.11"
   },
