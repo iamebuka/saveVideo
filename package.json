@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build:bootstrap && npm run lint && nodemon index.js",
+    "start": "node index.js",
+    "build": "npm run build:bootstrap && npm run lint && nodemon index.js",
     "lint": "eslint index.js",
     "build:bootstrap": "webpack"
   },
