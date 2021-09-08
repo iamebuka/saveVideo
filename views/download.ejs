@@ -132,24 +132,26 @@
                 <p class="card-text"><%= result.text%></p>
               </blockquote> -->
 
-              <a target="_blank" class="btn btn-primary" href="<%= result.media[0].url%>">
+              <!-- <a target="_blank" class="btn btn-primary" href="<%= result.media[0].url%>">
                 View/Save Video
-              </a>
+              </a> -->
+              <a
+
+                target="_blank"
+                href="/downloads?URL=<%= result.media[0].url%>"
+                style="color: #fff"
+                class="btn btn-primary float-right"
+                download
+                ><i class="fas fa-arrow-down"></i>&nbsp; Download</a>
+                
               <a
 
                 target="_blank"
                 href="http://www.twitter.com/<%= screen_name%>/status/<%= result.original_tweetID%>"
                 style="color: #fff"
-                class="btn btn-warning float-right"
-                ><i class="fas fa-arrow-down"></i>&nbsp; View Tweets</a>
-              <!-- <a
-
-                target="_blank"
-                href="/downloads?URL=<%= result.media[0].url%>"
-                style="color: #fff"
-                class="btn btn-warning float-right"
+                class="btn btn-warning"
                 download
-                ><i class="fas fa-arrow-down"></i>&nbsp; Download</a> -->
+                ><i class="fas fa-arrow-down"></i>&nbsp; View Tweets</a
               <br /><br />
               <p class="card-text">
                 <small class="text-muted"><%= result.generated_date%></small>
