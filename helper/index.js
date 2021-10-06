@@ -26,22 +26,22 @@ function messageTemplate(screen_name) {
   let choice = getRandom(6);
   switch (choice) {
     case 1:
-      return '@' + String(screen_name).trim() + ' 🔥🔥 The download you requested is ready at http://www.savetweetvideo.link/downloads/' + String(screen_name) + " Cc @" + String(screen_name).trim() ;
+      return '@' + String(screen_name).trim() + ' 🔥🔥 The download you requested is ready at http://www.savevideo.xyz/downloads/' + String(screen_name) + ' Cc @' + String(screen_name).trim() ;
     break;
     case 2:
-    return '@' + String(screen_name).trim() + ' Ding! Dong!! 🔔🔔 go to http://www.savetweetvideo.link/downloads/' + String(screen_name) + ' to download your video. I might not always respond, Please do check this link when you request for a new video Cc @'+ String(screen_name).trim();
+    return '@' + String(screen_name).trim() + ' Ding! Dong!! 🔔🔔 go to http://www.savevideo.xyz/downloads/' + String(screen_name) + ' to download your video. I might not always respond, Please do check this link when you request for a new video Cc @'+ String(screen_name).trim();
     break;
     case 3:
-    return '@' + String(screen_name).trim() + ' Here is the link you asked for http://www.savetweetvideo.link/downloads/' + String(screen_name) + ' 😎😎. Remember to bookmark this link for future reference. Cc @' + String(screen_name).trim();
+    return '@' + String(screen_name).trim() + ' Here is the link you asked for http://www.savevideo.xyz/downloads/' + String(screen_name) + ' 😎😎. Remember to bookmark this link for future reference. Cc @' + String(screen_name).trim();
     break;
     case 4:
-      return '@' + String(screen_name).trim() + ' Download ready here http://www.savetweetvideo.link/downloads/' + String(screen_name) + ' Bookmark. Share. Follow. 👏👏 Cc @' + String(screen_name).trim();
+      return '@' + String(screen_name).trim() + ' Download ready here http://www.savevideo.xyz/downloads/' + String(screen_name) + ' Bookmark. Share. Follow. 👏👏 Cc @' + String(screen_name).trim();
     break;
     case 5:
-      return '@' + String(screen_name).trim() + ' Remember to Bookmark. Follow. Download is ready at http://www.savetweetvideo.link/downloads/' + String(screen_name) + " Cc @" + String(screen_name).trim();
+      return '@' + String(screen_name).trim() + ' Remember to Bookmark. Follow. Download is ready at http://www.savevideo.xyz/downloads/' + String(screen_name) + ' Cc @' + String(screen_name).trim();
     break;
     default:
-      return '@' + String(screen_name).trim() + ' Hey your request is ready at http://www.savetweetvideo.link/downloads/' + String(screen_name) + ' I might not respond always, So Always check this link when you request for a new video Cc @' + String(screen_name).trim();
+      return '@' + String(screen_name).trim() + ' Hey your request is ready at http://www.savevideo.xyz/downloads/' + String(screen_name) + ' I might not respond always, So Always check this link when you request for a new video Cc @' + String(screen_name).trim();
   }
 }
 
