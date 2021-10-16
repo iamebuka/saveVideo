@@ -15,7 +15,7 @@ $(document).ready(function () {
       });
     });
 
-    fetchAdData(adsource);
+    // fetchAdData(adsource);
 
     function fetchAdData(source) {
       $.ajax({
