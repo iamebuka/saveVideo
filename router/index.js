@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
   res.render('index');
 });
 
-router.get('/ads', function (req, res) {
+router.get('/ads', timeout('25s'), haltOnTimedout, function (req, res) {
   let ads = new adData({ source: req.query.source.toLowerCase() });
   ads
     .save()
@@ -32,7 +32,7 @@ router.get('/ads', function (req, res) {
     });
 });
 
-router.get('/adData', function (req, res) {
+router.get('/adData', timeout('25s'), haltOnTimedout, function (req, res) {
   let adSource = req.query.source.toLowerCase();
   adData
     .find({ source: adSource })
